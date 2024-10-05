@@ -31,9 +31,8 @@ class CustomUserManager(BaseUserManager):
         """
         if not email:
             raise ValueError("The Email field should be set.")
-        import pdb;pdb.set_trace()
         email = self.normalize_email(email)
-        user = self.model(email, **extra_fields)
+        user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
