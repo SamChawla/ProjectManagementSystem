@@ -1,11 +1,18 @@
 {% extends 'base.html' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Login{% endblock %}
 
 {% block content %}
-    <h2 style="text-align: center;">Project Pulse User Registration</h2>
-    <form method="post" novalidate>
+    <h2 style="text-align: center;">Project Pulse User Login</h2>
+    <form method="post">
         {% csrf_token %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-info">
+                    <strong>{{ message|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endif %}
         {% if form.errors %}
             {% for field in form %}
                 {% for error in field.errors %}
@@ -35,7 +42,7 @@
             </div>
         {% endfor %}
         <div style="text-align: center;">
-        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="submit" class="btn btn-primary">Login</button>
         </div>
     </form>
 {% endblock %}

@@ -1,5 +1,6 @@
 """ This module defines the forms used in the accounts app."""
 
+from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
@@ -100,24 +101,12 @@ class UserRegistrationForm(UserCreationForm):
         return user
 
 
-class UserLoginForm(UserCreationForm):
+class UserLoginForm(forms.Form):
     """This class defines the form for logging in a user"""
 
-    class Meta(UserCreationForm.Meta):
-        """This class defines the metadata for the UserLoginForm"""
-
-        model = User
-        fields = [
-            "email",
-            "password",
-        ]
-
-    def __init__(self, *args, **kwargs):
-        """This method initializes the UserLoginForm"""
-        super().__init__(*args, **kwargs)
-        self.fields["email"].widget.attrs.update(
-            {"autofocus": True, "placeholder": "Email", "class": "form-control"}
-        )
-        self.fields["password"].widget.attrs.update(
-            {"autofocus": True, "placeholder": "Password", "class": "form-control"}
-        )
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={"autofocus": True, "placeholder": "Email", "class": "form-control"})
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={"autofocus": True, "placeholder": "Password", "class": "form-control"})
+    )

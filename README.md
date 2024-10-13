@@ -48,3 +48,14 @@ Day 2:
 Day 3:
 
 - Forms and Admin Panel
+
+Day 4:
+
+- Created Forms for User Registration and Login
+- Added Base Templates
+- Added Static Files
+- Updated settings to include templates and static files
+
+Day 5:
+
+- 
