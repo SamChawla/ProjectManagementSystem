@@ -16,11 +16,12 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 
 admin.site.site_header = "Project Pulse Admin"
 admin.site.site_title = "Project Pulse Admin Portal"
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("accounts/", include("accounts.urls")),
 ]
